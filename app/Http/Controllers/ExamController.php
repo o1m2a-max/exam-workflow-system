@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
-use App\Models\Question; // ✅ ADD THIS
+use App\Models\Question; 
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
 {
     public function index()
     {
-        // ✅ LOAD QUESTIONS TOO (VERY IMPORTANT)
+       
         $exams = Exam::with('questions')
                     ->where('state', '!=', 'archived')
                     ->orderBy('created_at', 'desc')
@@ -32,7 +32,7 @@ class ExamController extends Controller
         return redirect('/exams')->with('success', 'Exam created successfully');
     }
 
-    // ✅ NEW: ADD QUESTION
+    
     public function addQuestion(Request $request, $id)
     {
         $request->validate([

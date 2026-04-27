@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Services\ExamStateMachine;
-use App\Models\Question; // ✅ ADD THIS
+use App\Models\Question; 
 
 class Exam extends Model
 {
@@ -16,7 +16,6 @@ class Exam extends Model
         return $stateMachine->transition($this, $newState);
     }
 
-    // ✅ NEW: RELATIONSHIP (Exam has many questions)
     public function questions()
     {
         return $this->hasMany(Question::class);
